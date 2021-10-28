@@ -18,8 +18,7 @@ const ContactList = (props) => {
         );
     });
     return (
-    <div className="main">
-        <hr/>
+    <div className="ui text centered">
         <h2>
         Contact List
             <Link to="/add">

@@ -13,20 +13,21 @@ class AddContact extends React.Component {
             return;
         }
         this.props.addContactHandler(this.state);
-        this.setState({ name: "", email: "" })
+        this.setState({ name: "", email: "" });
+        // console.log(this.props);
+        this.props.history.push("/");
     }
 
     render() {
         return (
-            <div className="ui main">
-                <hr/>
+            <div className="ui centered">
                 <h2>Add Contact</h2>
                 <form className="ui form" onSubmit={this.add}>
                     <div className="field">
                         <label>Name</label>
                         <input 
                             type="text" 
-                            name="text" 
+                            name="name" 
                             placeholder="Name"
                             value={this.state.name} 
                             onChange={ (e) => this.setState({name: e.target.value}) }>

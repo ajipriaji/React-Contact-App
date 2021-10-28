@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { v4 as uuid } from "uuid";
 import './App.css';
+
 import Header from './Header'
 import AddContact from './Addcontact'
 import ContactList from './ContactList'
+import ContactDetail from './ContactDetail'
 
 function App() {
   const LOCAL_STRORAGE_KEY = "contacts";
@@ -35,18 +37,31 @@ function App() {
     <div className="ui container">
       <Router>
         <Header />
+
         <Switch>
           <Route 
             path="/" 
-            exact component={()=> (
-              <ContactList contacts={contacts} getContactId={removeContactHandler}/> 
-            )} 
+            exact
+            render={(props) => (
+              <ContactList 
+                {...props} 
+                contacts={contacts} 
+                getContactId={removeContactHandler} 
+              />
+            )}
           />
           <Route 
-            path="/add" 
-            component={() => (
-              <AddContact addContactHandler={addContactHandler}/> 
-            )} 
+            path="/add"
+             render={(props) => (
+               <AddContact
+                {...props}
+                addContactHandler={addContactHandler}
+               />
+             )}
+          />
+
+          <Route 
+            path="/contact/:id" component={ContactDetail}
           />
         </Switch>
       </Router>
